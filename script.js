@@ -19,6 +19,20 @@ $(document).ready(function() {
     }
   });
 
+  // inserisco le CoseDaFare con il tasto invio
+  $('#new-todo-text').keypress(function(event) {
+    //leggo il testo da inserire
+    if (event.which === 13) {
+      var new_todo_text = $('#new-todo-text').val().trim();
+      if (new_todo_text.length > 0) {
+        // resetto input
+        $('#new-todo-text').val('');
+        crea_todo(new_todo_text);
+      } else {
+        alert('inserisci il testo nel campo');
+      }
+    }
+  });
 
   //inserisco o tolgo al click sottolineatura completato
   $("ul").on("click", "li", function() {
