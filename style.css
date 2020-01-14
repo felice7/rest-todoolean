@@ -72,7 +72,7 @@ li i {
 
 .completato {
   color: #c0392b;
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
 }
 
 

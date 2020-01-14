@@ -25,14 +25,14 @@
   </div>
 
   <script id="todo-template" type="text/x-handlebars-template">
-    
-    <li data-todo_id="{{ todo_id }}">
-    <i class="fa fa-trash delete-todo pulsanti"></i>
-    <i class="fa fa-pencil-alt edit-todo pulsanti"></i>
-    <i class="fas fa-check save-todo pulsanti"></i>
-    <span class="todo-text">{{ todo_text }}</span>
-    <input class="edit-todo-input" type="text" value= "{{ todo_text }}">
-  </li>
+
+    <li class="{{ done }}" data-todo_id="{{ todo_id }}">
+      <i class="fa fa-trash delete-todo pulsanti"></i>
+      <i class="fa fa-pencil-alt edit-todo pulsanti"></i>
+      <i class="fas fa-check save-todo pulsanti"></i>
+      <span class="todo-text">{{ todo_text }}</span>
+      <input class="edit-todo-input" type="text" value= "{{ todo_text }}">
+    </li>
 
   </script>
 

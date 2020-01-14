@@ -35,8 +35,23 @@ $(document).ready(function() {
   });
 
   //inserisco o tolgo al click sottolineatura completato
-  $("ul").on("click", "li", function() {
-    $(this).toggleClass("completato");
+  $("ul").on("click", ".todo-text", function() {
+    var fatto = $(this).parent().hasClass("completato");
+    var todo_id = $(this).parent().attr('data-todo_id');
+
+    $.ajax({
+      'url': url_api + todo_id,
+      'method': 'PATCH',
+      'data': {
+        'done': (fatto == false ? 1 : 0)
+      },
+      'success': function(data) {
+        stampa_todos();
+      },
+      'error': function() {
+        alert('errore');
+      }
+    });
   });
 
   //cancellazione todo
@@ -92,10 +107,12 @@ $(document).ready(function() {
           var todo_corrente = todos[i];
           var testo_todo = todo_corrente.text;
           var id_todo = todo_corrente.id;
+          var fatto = todo_corrente.done;
 
           var template_data = {
             todo_id: id_todo,
-            todo_text: testo_todo
+            todo_text: testo_todo,
+            done: (fatto == 1 ? 'completato' : "")
           };
           var html_todo = template_function(template_data);
           $('#todo-list').append(html_todo);
@@ -141,7 +158,7 @@ $(document).ready(function() {
 
     $.ajax({
       'url': url_api + todo_id,
-      'method': 'PUT',
+      'method': 'PATCH',
       'data': {
         'text': testo_todo
       },
